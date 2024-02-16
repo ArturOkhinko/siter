@@ -1,0 +1,44 @@
+.main {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  margin: 27px 50px 0 50px;
+  height: 440px;
+}
+
+.filling {
+  display: flex;
+  margin: 0 64px;
+}
+.column_one {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 280px;
+  margin: 5px 40px 0 0;
+}
+
+.title {
+  font-size: 37px;
+  letter-spacing: -1.5px;
+}
+
+.description {
+  font-size: 14px;
+  line-height: 20px;
+}
+.column_two img {
+  width: 264px;
+  height: 264px;
+  margin-bottom: 40px;
+}
+
+.column_one button {
+  width: 125px;
+  height: 40px;
+  font-size: 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--background-button);
+  color: white;
+}
