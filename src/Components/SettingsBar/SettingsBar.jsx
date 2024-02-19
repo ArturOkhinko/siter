@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./Settings.module.css";
 import RangeSlider from "../RangeSlider/RangeSlider";
 import MySelect from "../MySelect/MySelect";
 import Toggle from "../Toggle/Toggle";
 
-export default function SettingsBar() {
+export default function SettingsBar({DOMElement}) {
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
   const [opasity, setOpasity] = useState(0);
@@ -23,6 +23,25 @@ export default function SettingsBar() {
     { name: "ease-out" },
     { name: "ease-in-out" },
   ];
+
+  useEffect(() => {
+    if(DOMElement.current === undefined) {
+      return
+    }
+    console.log(y, x, opasity, scale)
+    DOMElement.current.presumptivePositionTop = y
+    DOMElement.current.presumptivePositionLeft = x
+    DOMElement.current.presumptiveOpasity = opasity
+    DOMElement.current.presumptiveScale = scale
+    DOMElement.current.presumptiveBlur = blur
+    DOMElement.current.presumptiveSpeed = speed
+    DOMElement.current.presumptiveDelay = delay
+    DOMElement.current.presumptiveFunctionValue = functionValue
+    DOMElement.current.presumptiveReply = reply
+
+    document.cookie = `${DOMElement.current.className.split(" ")[0]}={"x":${x}, "y":${y}}`
+  }, [y, x, opasity, scale, blur, speed, delay, functionValue, reply])
+
   return (
     <div className={style.main}>
       <div className={style.rangeSliders}>
@@ -32,6 +51,7 @@ export default function SettingsBar() {
           max={100}
           value={x}
           setValue={setX}
+          nameAction={"correctX"}
         />
         <RangeSlider
           name={"Y"}
@@ -39,6 +59,7 @@ export default function SettingsBar() {
           max={100}
           value={y}
           setValue={setY}
+          nameAction={"correctY"}
         />
         <RangeSlider
           name={"Opasity"}
@@ -47,6 +68,7 @@ export default function SettingsBar() {
           value={opasity}
           setValue={setOpasity}
           unit={"%"}
+          nameAction={"correctOpasity"}
         />
         <RangeSlider
           name={"Scale"}
@@ -55,6 +77,7 @@ export default function SettingsBar() {
           step={"0.1"}
           value={scale}
           setValue={setScale}
+          nameAction={"correctScale"}
         />
         <RangeSlider
           name={"Blur"}
@@ -62,6 +85,7 @@ export default function SettingsBar() {
           max={10}
           value={blur}
           setValue={setBlur}
+          nameAction={"correctBlur"}
         />
         <RangeSlider
           name={"Speed"}
@@ -71,6 +95,7 @@ export default function SettingsBar() {
           value={speed}
           setValue={setSpeed}
           unit="s"
+          nameAction={"correctSpeed"}
         />
         <RangeSlider
           name={"Delay"}
@@ -80,6 +105,7 @@ export default function SettingsBar() {
           value={delay}
           setValue={setDelay}
           unit="s"
+          nameAction={"correctDelay"}
         />
       </div>
       <div className={style.function}>

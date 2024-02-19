@@ -9,7 +9,7 @@ export default function MySelect({ options, value, setValue }) {
       onChange={(e) => setValue(e.target.value)}
     >
       {options.map((option) => (
-        <option value={option.name}>{option.name}</option>
+        <option value={option.name} key={option.name}>{option.name}</option>
       ))}
     </select>
   );

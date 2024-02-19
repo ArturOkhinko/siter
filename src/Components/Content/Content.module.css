@@ -4,11 +4,17 @@
   background-color: white;
   margin: 27px 50px 0 50px;
   height: 440px;
+  overflow: scroll;
 }
 
 .filling {
   display: flex;
   margin: 0 64px;
+}
+.interactiveElement {
+  position: relative;
+  left: 0;
+  top: 0;
 }
 .column_one {
   display: flex;
@@ -17,23 +23,23 @@
   height: 280px;
   margin: 5px 40px 0 0;
 }
-
 .title {
   font-size: 37px;
   letter-spacing: -1.5px;
+  cursor: pointer;
+  border: 1px solid rgba(0,0,0,0);
+  border-radius: 5px;
 }
 
 .description {
   font-size: 14px;
   line-height: 20px;
+  cursor: pointer;
+  border: 1px solid rgba(0,0,0,0);
+  border-radius: 5px;
 }
-.column_two img {
-  width: 264px;
-  height: 264px;
-  margin-bottom: 40px;
-}
-
-.column_one button {
+.filling button {
+  cursor: pointer;
   width: 125px;
   height: 40px;
   font-size: 15px;
@@ -41,4 +47,20 @@
   border-radius: 5px;
   background-color: var(--background-button);
   color: white;
+}
+.column_two img {
+  width: 264px;
+  height: 264px;
+  margin-bottom: 40px;
+  cursor: pointer;
+  border: 1px solid rgba(0,0,0,0);
+  border-radius: 5px;
+}
+
+.indicateChoice {
+  position: absolute;
+  background-color: rgba(62, 135, 248, 0.5);
+  border-radius: 5px;
+  transition: all;
+  z-index: 100;
 }

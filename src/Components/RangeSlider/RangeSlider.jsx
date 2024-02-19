@@ -1,5 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import style from "./RangeSlider.module.css";
+import { useDispatch } from "react-redux";
+import { animationParametrsAction } from "../../Store/reducers/animationParametrsReducer";
 
 export default function RangeSlider({
   name,
@@ -9,13 +11,18 @@ export default function RangeSlider({
   setValue,
   step = "1",
   unit,
+  nameAction,
 }) {
   const rangeRef = useRef(null);
+  const dispatch = useDispatch()
 
   const handleChange = (e) => {
     if (step === "1") {
-      return setValue(Math.floor(e.target.value));
+      const floorValue = Math.floor(e.target.value)
+      dispatch(animationParametrsAction[nameAction](floorValue))
+      return setValue(floorValue);
     }
+    dispatch(animationParametrsAction[nameAction](e.target.value))
     setValue(e.target.value);
   };
 
@@ -40,7 +47,7 @@ export default function RangeSlider({
         max={String(max)}
         step={step}
         value={value}
-        onChange={handleChange}
+        onChange={(e) => handleChange(e)}
         ref={rangeRef}
       />
       {unit ? (
